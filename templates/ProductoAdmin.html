@@ -162,7 +162,7 @@
    
         <h1 class="display-3">MODULO PRODUCTO</h1>  
   
-        <img src="{{ url_for('static', filename='img/productos.jpg') }}"  width="300" alt="Aqui va una imagen">  
+        <img src="{{ url_for('static', filename='img/productos.jpg') }}"  width="200" alt="Aqui va una imagen">  
         
         <br>
         <br>
@@ -291,7 +291,7 @@
                   <td >{% print(pro[4]) %}</td>  
                   <td >{% print(pro[5]) %}</td>
                   <td >{% print(pro[8]) %}</td>
-                  <td > <a href="#" onclick="editarProducto('{{pro[2]}}')">Editar</a>   </td>
+                  <td > <a href="#" onclick="editarProducto('{{pro[0]}}')">Editar</a>   </td>
                   <td > <a href="#" onclick="eliminarProducto('{{pro[2]}}')">Eliminar</a>   </td>
                 </tr>
                 {% endfor %}  

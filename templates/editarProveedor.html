@@ -21,7 +21,7 @@
 
 
 
-                            <form  name="formEdit"  action="{{ url_for('editar_proveedor' , nom_proveedor = proveedores[0][1]) }} "  method="post" onsubmit="" >
+                            <form  name="formEdit"  action="{{ url_for('editar_proveedor' , nom_proveedor = proveedores[0][0]) }} "  method="post" onsubmit="" >
                                 
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="usuario" type="text" value= "{{proveedores[0][1]}}" name = "nombre" />

@@ -274,14 +274,14 @@ def editar_usuario(nom_usuario):
             else:
             # Seguro:
                 db.execute(
-                    'UPDATE Usuarios SET usuario = ?,rol = ?, email = ? WHERE usuario = ?',
-                    (usuario,rol,email,usuario)
+                    'UPDATE Usuarios SET usuario = ?,rol = ?, email = ? WHERE id_usuario = ?',
+                    (usuario,rol,email,nom_usuario)
                     )
                                              
                 db.commit()
                 flash('Usuario Editado')
                 usuarios = db.execute(
-                    'SELECT * FROM Usuarios WHERE usuario = ? ', (nom_usuario,) 
+                    'SELECT * FROM Usuarios WHERE id_usuario = ? ', (nom_usuario,) 
                     ).fetchall()
                 print(usuarios)   
                 return render_template("editarUsuario.html",  usuarios = usuarios , nom_usuario=nom_usuario)
@@ -290,7 +290,7 @@ def editar_usuario(nom_usuario):
               
         db = get_db()
         usuarios = db.execute(
-            'SELECT * FROM Usuarios WHERE usuario = ? ', (nom_usuario,) 
+            'SELECT * FROM Usuarios WHERE id_usuario = ? ', (nom_usuario,) 
             ).fetchall()
         print(usuarios)   
         return render_template("editarUsuario.html",  usuarios = usuarios , nom_usuario=nom_usuario)
@@ -450,7 +450,8 @@ def consulta_producto_admin():
             db = get_db()
             productos = db.execute(
             'SELECT * FROM Productos INNER JOIN Proveedores ON Productos.id_proveedor = Proveedores.id_Proveedor WHERE stock <  cant_minima'
-            ).fetchall() 
+            ).fetchall()
+            
             
         else: 
             db = get_db()
@@ -466,7 +467,7 @@ def consulta_producto_admin():
 
 
 
-@app.route('/productos/1', methods=['GET', 'POST'])
+@app.route('/productos', methods=['GET', 'POST'])
 @login_required
 def consulta_producto_usuario():
 
@@ -563,13 +564,13 @@ def editar_producto(nom_producto):
                 return render_template("editarProducto.html")
             else:         
                 db.execute(
-                    'UPDATE Productos SET codigo = ?,nombre = ?,descripcion = ?, cant_minima =?, stock = ?, id_proveedor = ? WHERE nombre = ?',
-                    (codigo,nombre,descripcion,cant_minima,stock,id_proveedor[0],nombre)
+                    'UPDATE Productos SET codigo = ?,nombre = ?,descripcion = ?, cant_minima =?, stock = ?, id_proveedor = ? WHERE id_producto = ?',
+                    (codigo,nombre,descripcion,cant_minima,stock,id_proveedor[0],nom_producto)
                     )                                             
                 db.commit()
                 flash('Producto Editado')
                 productos = db.execute(
-                    'SELECT * FROM Productos INNER JOIN Proveedores ON Productos.id_proveedor = Proveedores.id_Proveedor  WHERE Productos.nombre = ? ', (nom_producto,) 
+                    'SELECT * FROM Productos INNER JOIN Proveedores ON Productos.id_proveedor = Proveedores.id_Proveedor  WHERE Productos.id_producto = ? ', (nom_producto,) 
                     ).fetchall()
                 print(productos)   
                 return render_template("editarProducto.html",  productos = productos , nom_producto=nom_producto)
@@ -578,7 +579,7 @@ def editar_producto(nom_producto):
               
         db = get_db()
         productos = db.execute(
-            'SELECT * FROM Productos INNER JOIN Proveedores ON Productos.id_proveedor = Proveedores.id_Proveedor WHERE  Productos.nombre = ? ', (nom_producto,)
+            'SELECT * FROM Productos INNER JOIN Proveedores ON Productos.id_proveedor = Proveedores.id_Proveedor WHERE  Productos.id_producto = ? ', (nom_producto,)
             ).fetchall()
         print(productos)   
         return render_template("editarProducto.html",   productos = productos , nom_producto=nom_producto)
@@ -710,7 +711,7 @@ def consulta_proveedor_admin():
     return render_template("ProveedorAdmin.html", proveedores=proveedores)
     
 
-@app.route('/proveedores/1', methods=['GET', 'POST'])
+@app.route('/proveedores', methods=['GET', 'POST'])
 @login_required
 def consulta_proveedor_empleado():
 
@@ -770,14 +771,14 @@ def editar_proveedor(nom_proveedor):
             else:
                           
                 db.execute(
-                    'UPDATE Proveedores SET nombre = ?, telefono = ?, direccion = ?, ciudad =? WHERE nombre = ?',
-                    (nombre,telefono,direccion,ciudad,nombre )
+                    'UPDATE Proveedores SET nombre = ?, telefono = ?, direccion = ?, ciudad =? WHERE id_proveedor = ?',
+                    (nombre,telefono,direccion,ciudad,nom_proveedor )
                     )
                                              
                 db.commit()
                 flash('Proveedor Editado')
                 proveedores = db.execute(
-                    'SELECT * FROM Proveedores WHERE nombre = ? ', (nom_proveedor,) 
+                    'SELECT * FROM Proveedores WHERE id_proveedor = ? ', (nom_proveedor,) 
                     ).fetchall()
                 print(proveedores)   
                 return render_template("editarProveedor.html",  proveedores = proveedores , nom_proveedor=nom_proveedor)
@@ -786,7 +787,7 @@ def editar_proveedor(nom_proveedor):
               
         db = get_db()
         proveedores = db.execute(
-            'SELECT * FROM Proveedores WHERE nombre = ? ', (nom_proveedor,) 
+            'SELECT * FROM Proveedores WHERE id_proveedor = ? ', (nom_proveedor,) 
             ).fetchall()
         print(proveedores)   
         return render_template("editarProveedor.html",    proveedores = proveedores , nom_proveedor=nom_proveedor)
