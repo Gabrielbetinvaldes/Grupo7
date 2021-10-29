@@ -1,4 +1,5 @@
 
+
 {% block title %}
 
 <title>USUARIO-XPENNG</title>
@@ -9,31 +10,31 @@
 {% extends 'base.html' %}
 
 {% block contenido %}
-    
+
 <header class="navbar navbar-dark sticky-top  bg-primary flex-md-nowrap p-0 shadow ">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-primary" href="/Dashboard">DASHBOARD-XPENNG</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-   
+
   <div class="navbar-nav col-7 ">
-  
+
    </div>
-   
+
 
   <div class="navbar-nav ">
-  
+
     <img src="{{ url_for('static', filename='img/usuario.png') }}"  width="30"  alt="Aqui va una imagen" >
-     
+
 
   </div>
 
   <div class="navbar-nav  ">
-  
 
-    
-    <a class="nav-link col-md-3 col-lg-2 me-0 px-3" href="">{{g.user[4]}}</a> 
-   
+
+
+  <h6 class="etiquetacorreo">{{g.user[4]}}</h6>
+
 
   </div>
 
@@ -41,11 +42,11 @@
 
 
   <div class="navbar-nav ">
-  
-       
+
+
     <div class="nav-item text-nowrap  bg-primary">
-      
-      
+
+
       <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-primary" href="/logout">Salir</a>
     </div>
 
@@ -56,7 +57,7 @@
 
 <div class="container-fluid">
   <div class="row">
-   
+
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
 
   <div class="accordion-item">
@@ -72,18 +73,18 @@
 
         <a class="nav-link active" aria-current="page" href="/sadmin/perfil/crear">Crear Usuarios</a>
         <a class="nav-link active" aria-current="page" href="/sadmin/perfil">Gestionar Usuarios</a>
-        
+
         {% elif g.user[3] == '2' %}
 
         <a class="nav-link active" aria-current="page" href="/admin/perfil">Gestionar Usuarios</a>
-        
+
         {% else %}
 
        <Label>NO TIENE ACCESO A ESTE MODULO</Label>
-       
-           
-        
-        {% endif %} 
+
+
+
+        {% endif %}
       </div>
     </div>
   </div>
@@ -97,28 +98,28 @@
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
 
-        
+
         {% if g.user[3] == '1' %}
 
         <a class="nav-link active" aria-current="page" href="/sadmin/productos/crear">Crear Productos</a>
         <a class="nav-link active" aria-current="page" href="/sadmin/productos">Gestionar Productos</a>
-      
+
 
         {% elif g.user[3] == '2' %}
 
         <a class="nav-link active" aria-current="page" href="/admin/productos/crear">Crear Productos</a>
-      
+
         {% else %}
 
-        <a class="nav-link active" aria-current="page" href="/productos">Gestionar Productos</a>
+        <a class="nav-link active" aria-current="page" href="/Dashboard/productos">Gestionar Productos</a>
 
-        {% endif %} 
-      
+        {% endif %}
+
       </div>
     </div>
   </div>
 
-  
+
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingFour">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -132,19 +133,19 @@
 
         <a class="nav-link active" aria-current="page" href="/sadmin/proveedores/crear">Crear Proveedor</a>
         <a class="nav-link active" aria-current="page" href="/sadmin/proveedores">Buscar Proveedor</a>
-      
+
 
         {% elif g.user[3] == '2' %}
 
         <a class="nav-link active" aria-current="page" href="/admin/proveedores/crear">Crear Proveedor</a>
-      
+
         {% else  %}
 
-        <a class="nav-link active" aria-current="page" href="/proveedores">Buscar Proveedor</a>
+        <a class="nav-link active" aria-current="page" href="/Dashboard/proveedores">Buscar Proveedor</a>
 
-        
-        
-        {% endif %} 
+
+
+        {% endif %}
 
              </div>
     </div>
@@ -156,24 +157,24 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
       <center>
-      
-       
-   
-      <h1 class="display-3">MODULO USUARIO</h1>  
 
-      <img src="{{ url_for('static', filename='img/grupo-de-usuarios.png') }}"  width="200" alt="Aqui va una imagen"> 
-      
-      
-      
+
+
+      <h1 class="display-3">MODULO USUARIO</h1>
+
+      <img src="{{ url_for('static', filename='img/grupo-de-usuarios.png') }}"  width="200" alt="Aqui va una imagen">
+
+
+
         <br>
-    
+
 
         <div class="table-responsive">
- 
+
           <form class="d-flex" action="{{ url_for('consulta_admin') }}" method="post" onsubmit="">
             <input class="form-control me-sm-2" type="text" placeholder="Buscar" name="usuario" id="usuario">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
-          </form>      
+          </form>
 
 
                 {% with messages = get_flashed_messages() %}
@@ -182,9 +183,9 @@
                         {% for message in messages %}
 
                         <script>
-                            window.alert('{{ message }}')                                                        
+                            window.alert('{{ message }}')
                         </script>
-                          
+
                         {% endfor %}
                     </ul>
                 {% endif %}
@@ -193,27 +194,27 @@
 
 
 
-  
+
           <br>
-      
-  
+
+
           <table class="table table-hover">
             <thead>
               <tr>
                 <th class="table-primary" scope="col">Id</th>
                 <th class="table-primary" scope="col">Nombre</th>
                 <th class="table-primary"  scope="col">Email</th>
-                <th class="table-primary"  scope="col">Rol</th>  
-                <th class="table-primary"  scope="col">Editar</th>  
-                <th class="table-primary" scope="col">Eliminar</th>              
+                <th class="table-primary"  scope="col">Rol</th>
+                <th class="table-primary"  scope="col">Editar</th>
+                <th class="table-primary" scope="col">Eliminar</th>
               </tr>
             </thead>
-  
-  
+
+
             <tbody>
               <tr class="table-active"></tr>
                 {% for usu in usuarios %}
-                
+
                   <th  scope="row">{% print(usu[0]) %}</th>
                   <td >{% print(usu[1]) %}</td>
                   <td >{% print(usu[4]) %}</td>
@@ -221,11 +222,11 @@
                   <td > <a href="#" onclick="editarUsuario('{{usu[0]}}')">Editar</a>   </td>
                   <td > <a href="#" onclick="eliminarUsuario('{{usu[1]}}')">Eliminar</a>   </td>
                 </tr>
-                {% endfor %}                   
-            
+                {% endfor %}
+
             </tbody>
-          </table>    
-    
+          </table>
+
     </center>
 
   </div>
